@@ -41,6 +41,10 @@ The network consists of three parts: 1) color transfer at the input level;
 2) layer-wise temporal difference at the feature level;   
 3) simultaneous extraction of changed and unchanged buildings at the decision level.   
 ```
+cd color_transfer
+see the function Color_Transfer_CCS_multi.m for color transfer
+```
+```
 python train_res50unet_changeonlyfuse_bj_trans_cert.py
 python train_res50unet_changeonlyfuse_sh_trans_cert.py
 ```
