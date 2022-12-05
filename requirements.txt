@@ -1,0 +1,5 @@
+torch==1.7.0
+torchvision==0.8.0
+segmentation_models_pytorch==0.2.1
+tifffile
+opencv-python
