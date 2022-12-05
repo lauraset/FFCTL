@@ -32,7 +32,11 @@ The algorithm includes three steps:
 2) object-to-pixel multi-temporal comparison;   
 3) uncertainty-aware analysis for reliable pseudo label generation.
 ```
-TO DO: some codes still needs reorganization, and will be available recently.
+cd pseudo_label_generation
+python step1_single_temporal_building_prediction.py
+demo_step2_change_region.m
+demo_step3_0_generate_changeprob.m
+demo_step3_1_obtain_reliable_label.m
 ```
 
 
