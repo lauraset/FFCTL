@@ -6,6 +6,8 @@ Accurate building change detection is crucial for understanding urban developmen
 
 ![image](https://user-images.githubusercontent.com/39206462/205588692-dc37ecbc-d11e-4c77-a4ea-6ee8e80b7858.png)
 
+## TO DO
+add some training samples
 
 ## Getting Started
 ### Prerequisites
