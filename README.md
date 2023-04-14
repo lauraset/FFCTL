@@ -110,6 +110,12 @@ python train_res50unet_changeonlyfuse_sh_trans_cert.py # for shanghai
 ```
 Note that the training epochs and learning rates for the two cities are different, and they should be set according to your own datasets.
 
+## Trained weights
+the well-trained weights can be obtained through baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
+
+## TO DO
+ADD some test codes and large area samples
+
 ## Acknowledgement
 We used the package "segmentation_models_pytorch" and "pytorch-grad-cam".   
 Thanks for their contributions.  
