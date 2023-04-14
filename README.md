@@ -6,8 +6,6 @@ Accurate building change detection is crucial for understanding urban developmen
 
 ![image](https://user-images.githubusercontent.com/39206462/205588692-dc37ecbc-d11e-4c77-a4ea-6ee8e80b7858.png)
 
-## TO DO
-add some training samples
 
 ## Getting Started
 ### Prerequisites
@@ -33,17 +31,8 @@ The algorithm includes three steps:
 1) single-temporal building prediction;    
 2) object-to-pixel multi-temporal comparison;   
 3) uncertainty-aware analysis for reliable pseudo label generation.
-
-step 1
 ```
-cd pseudo_label_generation
-python step1_single_temporal_building_prediction.py
-```
-step 2-3
-```
-demo_step2_change_region.m
-demo_step3_0_generate_changeprob.m
-demo_step3_1_obtain_reliable_label.m
+TO DO: some codes still needs reorganization, and will be available recently.
 ```
 
 
