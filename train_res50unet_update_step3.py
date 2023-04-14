@@ -16,7 +16,7 @@ import torch.nn as nn
 
 from torch.utils import data
 from tensorboardX import SummaryWriter #change tensorboardX
-from ZY3LC_dataset import dataloader_split
+from ZY3LC_dataset import dataloader
 from ZY3LC_loader import  myImageFloder_8bit_binary, myImageFloder_8bit_binary_update_scratch
 from metrics import SegmentationMetric, AverageMeter
 import segmentation_models_pytorch as smp
@@ -50,7 +50,6 @@ def adjust_learning_rate(optimizer, epoch):
 
 
 def main():
-
     # Setup seeds
     torch.manual_seed(1337)
     torch.cuda.manual_seed(1337)
@@ -64,22 +63,17 @@ def main():
     device = 'cuda'
 
     # Setup Dataloader
-    filepath = r'E:\yinxcao\ZY3LC\datanew8bit'
-    leftp = os.path.join(filepath, 'imglistvalid_train30_imgpath.csv')
-    clsp = os.path.join(filepath, 'imglistvalid_train30_labpath.csv')
-    seqpath = os.path.join(filepath, 'seqvalid_train30.txt')
-    train_img, train_lab, val_img, val_lab = dataloader_split(leftp, clsp, seqpath, split=0.9) # 90% for training
+    filepath = 'data' # data path
+    train_img, train_lab, val_img, val_lab,_,_ = dataloader(filepath, split=(0.9, 0.1, 0)) # 90% for training
 
-    # batch_size = 16
     epochs_scratch = 50
-
-    iroot = r'E:\yinxcao\ZY3LC\LCNet30data\runs'
+    iroot = 'runs'
     logdir = os.path.join(iroot, 'res50' + args.classname + '_update', 'scratch')
     os.makedirs(logdir, exist_ok=True)
     writer = SummaryWriter(log_dir=logdir)
 
-    # 20220417: use update model_best.rar, epoch=1
-    updatepath = os.path.join(iroot, 'res50' + args.classname + '_update', 'update', 'pred1')
+    # storing updated labels
+    updatepath = os.path.join(iroot, 'res50' + args.classname + '_update', 'update', 'pred')
 
     # NUM_WORKERS = 4
     classes = 2 # 0, 1, 2, 3, 4, 5, 6
@@ -87,7 +81,7 @@ def main():
     imgsize = 256
     global best_acc
     best_acc = 0
-    positive = classdict[args.classname] # buildings
+    positive = 255 # values for buildings
 
     # train with updated labels
     traindataloader_scratch = torch.utils.data.DataLoader(

@@ -55,20 +55,20 @@ def main():
 
     # Setup Dataloader
     fcode = 'bj'
-    datapath = os.path.join(r'E:\yinxcao\ZY3LC\changedata', fcode)
+    datapath = os.path.join('changedata', fcode)
     train_img, train_lab, val_img, val_lab, _, _ = \
         dataloader_t1t2(datapath, split=(0.9, 0.1, 0), fcode=fcode) # 90% for training
     # use cert
     train_lab = [i.replace('lab', 'cert') for i in train_lab]
     val_lab = [i.replace('lab', 'cert') for i in val_lab]
     # test
-    datapath = r'E:\yinxcao\ZY3LC\changedata\testdata'
+    datapath = r'changedata\testdata'
     test_img, test_lab, _,_,_,_ = \
         dataloader_t1t2(datapath, split=(1.0,0,0),fcode=fcode) # 90% for training
 
     # batch_size = 16
     epochs = 10
-    iroot = r'E:\yinxcao\ZY3LC\LCNet30data\runs_change\res50cdo_fuse'
+    iroot = r'runs_change\res50cdo_fuse'
     logdir = os.path.join(iroot, fcode+'_1ta_cert') # change only
     writer = SummaryWriter(log_dir=logdir)
     # NUM_WORKERS = 4
@@ -100,7 +100,7 @@ def main():
     model = smp.UnetCDdiffuse(encoder_name="resnet50", encoder_weights="imagenet",
                              in_channels=nchannels, classes=1).to(device)
     # load pretrained models
-    iroot2 = r'E:\yinxcao\ZY3LC\LCNet30data\runs'
+    iroot2 = 'runs'
     # old version
     pretrainp = os.path.join(iroot2, 'res50build_update', 'scratch', 'model_best.tar') #
     pretrain = torch.load(pretrainp)

@@ -5,7 +5,7 @@
 '''
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import torch
 import random
@@ -15,7 +15,7 @@ import torch.nn as nn
 
 from torch.utils import data
 from tensorboardX import SummaryWriter #change tensorboardX
-from ZY3LC_dataset import dataloader_split
+from ZY3LC_dataset import dataloader
 from ZY3LC_loader import myImageFloder_8bit_binary
 from metrics import SegmentationMetric, AverageMeter
 import segmentation_models_pytorch as smp
@@ -30,8 +30,6 @@ def get_arguments():
                         help="oisa|grass|tree|soil|build|water|road")
     args = parser.parse_args()
     return args
-
-classdict = {'oisa': 1, 'grass': 2, 'tree': 3, 'soil': 4, 'build': 5, 'water': 6, 'road': 7}
 
 
 def adjust_learning_rate(optimizer, epoch):
@@ -48,7 +46,6 @@ def adjust_learning_rate(optimizer, epoch):
 
 
 def main():
-
     # Setup seeds
     torch.manual_seed(1337)
     torch.cuda.manual_seed(1337)
@@ -62,15 +59,12 @@ def main():
     device = 'cuda'
 
     # Setup Dataloader
-    filepath = r'E:\yinxcao\ZY3LC\datanew8bit'
-    leftp = os.path.join(filepath, 'imglistvalid_train30_imgpath.csv')
-    clsp = os.path.join(filepath, 'imglistvalid_train30_labpath.csv')
-    seqpath = os.path.join(filepath, 'seqvalid_train30.txt')
-    train_img, train_lab, val_img, val_lab = dataloader_split(leftp, clsp, seqpath, split=0.9) # 90% for training
+    filepath = 'data' # data path
+    train_img, train_lab, val_img, val_lab,_,_ = dataloader(filepath, split=(0.9, 0.1,0), issave=True) # 90% for training
 
     # batch_size = 16
     epochs = 20
-    iroot = r'E:\yinxcao\ZY3LC\LCNet30data\runs'
+    iroot = 'runs'
     logdir = os.path.join(iroot, 'res50' + args.classname + '_warm')
     writer = SummaryWriter(log_dir=logdir)
     # NUM_WORKERS = 4
@@ -78,7 +72,7 @@ def main():
     nchannels = 4
     global best_acc
     best_acc = 0
-    positive = classdict[args.classname] # buildings
+    positive = 255 # values of buildings
 
     # train on the randomly cropped images
     traindataloader = torch.utils.data.DataLoader(
