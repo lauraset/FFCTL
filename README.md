@@ -95,7 +95,7 @@ datapath = os.path.join('changedata', fcode)
 train_lab = [i.replace('lab', 'cert') for i in train_lab] 
 val_lab = [i.replace('lab', 'cert') for i in val_lab]
 # test data 
-datapath = r'changedata\testdata'
+datapath = os.path.join(datapath, 'testdata')
 # path for saving weights 
 iroot = r'runs_change\res50cdo_fuse' # the default setting, depends on personal preferences
 # the path of images with color transfer
