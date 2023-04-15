@@ -117,6 +117,13 @@ Note that the training epochs and learning rates for the two cities are differen
 ## Trained weights
 the well-trained weights can be obtained through baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
 
+## Accuracy assessment
+the testdata is put in `data/bj/testdata`, and run the following code:
+```
+python ttest_res50unet_changeo_fuse_bj_trans_cert_tst.py # for beijing
+# python ttest_res50unet_changeo_fuse_sh_trans_cert_tst.py # for shanghai, the code is similar to that in beijing
+```
+
 ## Large area samples
 the original data and preprocessed one have been put in the baidu cloud pan, and then run the following code to generate predictions.
 ```
