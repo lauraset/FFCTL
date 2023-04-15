@@ -62,7 +62,7 @@ def main():
     train_lab = [i.replace('lab', 'cert') for i in train_lab]
     val_lab = [i.replace('lab', 'cert') for i in val_lab]
     # test
-    datapath = r'changedata\testdata'
+    datapath = os.path.join(datapath, 'testdata')
     test_img, test_lab, _,_,_,_ = \
         dataloader_t1t2(datapath, split=(1.0,0,0),fcode=fcode) # 90% for training
 
