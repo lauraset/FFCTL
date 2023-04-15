@@ -113,8 +113,8 @@ Note that the training epochs and learning rates for the two cities are differen
 ## Trained weights
 the well-trained weights can be obtained through baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
 
-## TO DO
-ADD some test codes and large area samples
+## Large area samples
+![image](https://user-images.githubusercontent.com/39206462/232196436-4e82c405-345d-4c45-abf1-f9df0c0acbf1.png)
 
 ## Acknowledgement
 We used the package "segmentation_models_pytorch" and "pytorch-grad-cam".   
