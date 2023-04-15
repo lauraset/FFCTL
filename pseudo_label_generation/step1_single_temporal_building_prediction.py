@@ -77,24 +77,25 @@ def get_imgfile(ipath):
     return filelist
 
 
-def main(filelist):
+def main(filelist, weightpath):
     device = 'cuda'
     nchannels = 4
     classes = 1
     net = smp.Unet(encoder_name="resnet50", encoder_weights="imagenet",
                                  in_channels=nchannels, classes=classes).to(device)
-    logdir = r'.\runs\res50build_update\scratch'
+    #logdir = r'.\runs\res50build_update\scratch'
      # print the model
-    resume = os.path.join(logdir, 'model_best.tar')
+    resume = os.path.join(weightpath, 'model_best.tar')
     try:
         print("=> loading checkpoint '{}'".format(resume))
         checkpoint = torch.load(resume)
         net.load_state_dict(checkpoint['state_dict'])
         # optimizer.load_state_dict(checkpoint['optimizer'])
-        print("=> success '{}' (epoch {})"
-                 .format(resume, checkpoint['epoch']))
+        print("=> success ")
     except:
         print("resume fails")
+        return False
+
     net.eval()
 
     # ### batch processing
@@ -154,7 +155,7 @@ def main(filelist):
             dst.write(res_seg, 1)
 
         # prob: scale from [0,1] to [0,255]
-        res = (res * 65535).astype('uint16')
+        res = (res * 255).astype('uint8')
         respath = os.path.join(idir, iname + postfix + '.tif')
         with rio.open(respath, mode="w", **rastermeta) as dst:
             dst.write(res, 1)
@@ -167,10 +168,12 @@ def main(filelist):
 
 if __name__=="__main__":
     # add file path
-    filelist = ['Z:\\yinxcao\\change\\beijing\\img18.tif', 'Z:\\yinxcao\\change\\beijing\\img28.tif',
-                'Z:\\yinxcao\\change\\shanghai\\img18.tif', 'Z:\\yinxcao\\change\\shanghai\\img28.tif'
-                ]
-    main(filelist)
+    # filelist = ['Z:\\yinxcao\\change\\beijing\\img18.tif', 'Z:\\yinxcao\\change\\beijing\\img28.tif',
+    #             'Z:\\yinxcao\\change\\shanghai\\img18.tif', 'Z:\\yinxcao\\change\\shanghai\\img28.tif'
+    #             ]
+    filelist = [r'../zhengzhou/img18.tif']
+    weightpath = r'../runs/res50build_update/scratch'
+    main(filelist, weightpath)
 
 
 
