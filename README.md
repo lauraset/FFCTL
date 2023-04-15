@@ -17,7 +17,7 @@ GPU: one NVIDIA GTX 1080 Ti GPU (11G memory)
 ```
 
 ## Prepare datasets
-Datasets: building detection and change detection datasets, which were organized as follows:    
+1. Datasets: building detection and change detection datasets, which were organized as follows:    
 ```
 building detection dataset:
     data/img # for storing images, the name of image: img_*.tif
@@ -39,6 +39,10 @@ change detection dataset for testing:
 ```
 Note that `certc` or `labc` were only used for visualization and not training.   
 In experiments, we found that `img1ta` performs slightly better than `img1t`, and therefore, we used the `img1ta`.   
+
+2. Large area test data: see the path  `zhengzhou`
+Due to the data privacy of shanghai and beijing, I presented a public region in zhengzheng of China.
+The original data and preprocessed data has been provided, see the following baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
 
 ## One-by-one step
 ### Step 1: noise-robust building extraction network pretraining   
