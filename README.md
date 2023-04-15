@@ -114,6 +114,11 @@ Note that the training epochs and learning rates for the two cities are differen
 the well-trained weights can be obtained through baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
 
 ## Large area samples
+the original data and preprocessed one have been put in the baidu cloud pan, and then run the following code to generate predictions.
+```
+cd pseudo_label_generation
+python step1_single_temporal_building_prediction.py
+```
 ![image](https://user-images.githubusercontent.com/39206462/232196436-4e82c405-345d-4c45-abf1-f9df0c0acbf1.png)
 
 ## Acknowledgement
