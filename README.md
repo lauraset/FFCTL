@@ -44,6 +44,15 @@ In experiments, we found that `img1ta` performs slightly better than `img1t`, an
 Due to the data privacy of shanghai and beijing, I presented a public region in zhengzheng of China.
 The original data and preprocessed data has been provided, see the following baidu cloud pan (link: https://pan.baidu.com/s/1CMkKZHv__mARhHJ-JHrkvw , code:04qp)
 
+### Preprocess ZY-3 images
+Details can be seen in the [link](https://github.com/lauraset/BuildingHeightModel)   
+To reduce the memory consumption, all images were stretched to the range of [0, 255] (i.e., 8 bit).    
+the optimized linear stretch algorithm was adopted. Due to the low efficiency of Envi, I rewrite the code using matlab.
+```
+func_16to8.m           # the function of stretching
+demo_stretch28bit.m    # the usage of func_16to8.m
+```
+
 ## One-by-one step
 ### Step 1: noise-robust building extraction network pretraining   
 The method includes three steps: 1) network initialization; 2) noisy label correction; and 3) network retraining.   
